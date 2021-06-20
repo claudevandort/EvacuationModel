@@ -348,7 +348,6 @@ end
 ; this function sets some initial value for an initial try to run the model
 ; if the user decides not to tweak any of the inputs
 to setup-init-val
-  set immediate_evacuation False  ; agents do not start evacuation immediately, instead they follow a Rayleigh distribution for their milling time
   set R1_HorEvac_Foot 25          ; 25% of the agents evacuate horizontally on foot
   set R2_HorEvac_Car 25           ; 25% of the agents evacuate horizontally with their car
   set R3_VerEvac_Foot 25          ; 25% of the agents evacuate on foot and are open to vertical evaucation if it is closer to them compared to a shelter outside the inundation zone
@@ -651,9 +650,6 @@ to load-population
             set dead? false                                            ; initialized as not dead
             set reached? false                                         ; initialized as not reached the transportation network
             make-decision                                              ; sets the evacuation mode and shelter decision and the corresponding milling time
-            if immediate_evacuation [                                  ; if immediate_evacuation is toggled on, set all the milling times to 0
-              set miltime 0
-            ]
           ]
         ]
       ]
@@ -940,17 +936,6 @@ PENS
 "Evacuated" 1.0 0 -10899396 true "" "plotxy (ticks / 60) (count turtles with [ color = green ] / (count residents + count pedestrians + count cars) * 100)"
 "Cars" 1.0 0 -13345367 true "" "plotxy (ticks / 60) (count cars with [ color = green ] / (count residents + count pedestrians + count cars) * 100)"
 "Pedestrians" 1.0 0 -14835848 true "" "plotxy (ticks / 60) (count pedestrians with [ color = green ] / (count residents + count pedestrians + count cars) * 100)"
-
-SWITCH
-67
-13
-221
-46
-immediate_evacuation
-immediate_evacuation
-1
-1
--1000
 
 BUTTON
 1294
@@ -1734,7 +1719,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.1
+NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
