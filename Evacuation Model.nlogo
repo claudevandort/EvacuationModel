@@ -918,10 +918,10 @@ ticks
 30.0
 
 PLOT
-946
-342
-1370
-495
+962
+340
+1386
+493
 Percentage of Evacuated
 Min
 %
@@ -938,9 +938,9 @@ PENS
 "Pedestrians" 1.0 0 -14835848 true "" "plotxy (ticks / 60) (count pedestrians with [ color = green ] / (count residents + count pedestrians + count cars) * 100)"
 
 BUTTON
-1133
+1148
 10
-1212
+1227
 43
 GO
 go
@@ -955,20 +955,20 @@ NIL
 1
 
 TEXTBOX
-8
-54
-217
-82
+6
+14
+215
+42
 Residents' Decision Making Probabalisties : (Percent)
 11
 0.0
 1
 
 INPUTBOX
-8
-87
-109
-147
+6
+47
+107
+107
 R1_HorEvac_Foot
 25.0
 1
@@ -976,10 +976,10 @@ R1_HorEvac_Foot
 Number
 
 INPUTBOX
-8
-150
-109
-210
+6
+110
+107
+170
 R3_VerEvac_Foot
 25.0
 1
@@ -987,10 +987,10 @@ R3_VerEvac_Foot
 Number
 
 MONITOR
-962
-47
-1044
-92
+963
+48
+1055
+93
 Time (min)
 ticks / 60
 1
@@ -998,10 +998,10 @@ ticks / 60
 11
 
 INPUTBOX
-113
-214
-163
-274
+111
+174
+161
+234
 Hc
 1.0
 1
@@ -1009,10 +1009,10 @@ Hc
 Number
 
 PLOT
-945
-158
-1370
-332
+961
+156
+1386
+330
 Percentage of Casualties
 Min
 %
@@ -1029,20 +1029,20 @@ PENS
 "Pedestrians" 1.0 0 -955883 true "" "plotxy (ticks / 60) ((count pedestrians with [color = red] + count residents with [color = red]) / (count residents + count pedestrians + count cars) * 100)"
 
 TEXTBOX
-5
-215
-121
-257
+3
+175
+119
+217
 Critical Depth and Time: (Meters and Seconds)
 11
 0.0
 1
 
 INPUTBOX
-8
-539
-58
-599
+6
+499
+56
+559
 Rtau1
 10.0
 1
@@ -1050,10 +1050,10 @@ Rtau1
 Number
 
 INPUTBOX
-58
-539
-108
-599
+56
+499
+106
+559
 Rsig1
 1.65
 1
@@ -1061,21 +1061,21 @@ Rsig1
 Number
 
 INPUTBOX
-8
-603
-58
-663
+6
+563
+56
+623
 Rtau3
-10.0
+40.0
 1
 0
 Number
 
 INPUTBOX
-58
-603
-108
-663
+56
+563
+106
+623
 Rsig3
 1.65
 1
@@ -1083,30 +1083,30 @@ Rsig3
 Number
 
 TEXTBOX
-10
-523
-210
-551
+8
+483
+208
+511
 Evacuation Decsion Making Times:
 11
 0.0
 1
 
 TEXTBOX
-18
-274
-67
-302
+16
+234
+65
+262
 On foot: (ft/s)
 11
 0.0
 1
 
 INPUTBOX
-66
-276
-136
-336
+64
+236
+134
+296
 Ped_Speed
 4.0
 1
@@ -1114,10 +1114,10 @@ Ped_Speed
 Number
 
 INPUTBOX
-144
-276
-215
-336
+142
+236
+213
+296
 Ped_Sigma
 0.65
 1
@@ -1125,10 +1125,10 @@ Ped_Sigma
 Number
 
 MONITOR
-1074
-48
-1156
-93
+1063
+47
+1141
+92
 Evacuated
 count turtles with [ color = green ]
 17
@@ -1136,20 +1136,20 @@ count turtles with [ color = green ]
 11
 
 MONITOR
-1165
-48
-1242
-93
-Casualty
+1150
+47
+1227
+92
+Casualties
 count turtles with [ color = red ]
 17
 1
 11
 
 MONITOR
-1166
+1107
 101
-1260
+1226
 146
 Mortality (%)
 mortality_rate
@@ -1157,22 +1157,11 @@ mortality_rate
 1
 11
 
-MONITOR
-1268
-49
-1355
-94
-Vertical Cap
-sum [evacuee_count] of intersections with [shelter? and shelter_type = \"Ver\"]
-17
-1
-11
-
 INPUTBOX
-117
-87
-217
-147
+115
+47
+215
+107
 R2_HorEvac_Car
 25.0
 1
@@ -1180,10 +1169,10 @@ R2_HorEvac_Car
 Number
 
 INPUTBOX
-117
-150
-217
-210
+115
+110
+215
+170
 R4_VerEvac_Car
 25.0
 1
@@ -1191,21 +1180,21 @@ R4_VerEvac_Car
 Number
 
 INPUTBOX
-114
-539
-164
-599
+112
+499
+162
+559
 Rtau2
-10.0
+15.0
 1
 0
 Number
 
 INPUTBOX
-164
-539
-214
-599
+162
+499
+212
+559
 Rsig2
 1.65
 1
@@ -1213,21 +1202,21 @@ Rsig2
 Number
 
 INPUTBOX
-116
-604
-166
-664
+114
+564
+164
+624
 Rtau4
-10.0
+45.0
 1
 0
 Number
 
 INPUTBOX
-163
-604
-213
-664
+161
+564
+211
+624
 Rsig4
 1.65
 1
@@ -1235,10 +1224,10 @@ Rsig4
 Number
 
 INPUTBOX
-66
-340
-137
-400
+64
+300
+135
+360
 max_speed
 35.0
 1
@@ -1246,20 +1235,20 @@ max_speed
 Number
 
 TEXTBOX
-13
-340
-53
-368
+11
+300
+51
+328
 by car:\n(mph)
 11
 0.0
 1
 
 INPUTBOX
-66
-401
-139
-461
+64
+361
+137
+421
 acceleration
 5.0
 1
@@ -1267,10 +1256,10 @@ acceleration
 Number
 
 INPUTBOX
-143
-401
-218
-461
+141
+361
+216
+421
 deceleration
 25.0
 1
@@ -1278,20 +1267,20 @@ deceleration
 Number
 
 TEXTBOX
-8
-413
-57
-447
+6
+373
+55
+407
 (ft/s^2)
 11
 0.0
 1
 
 INPUTBOX
-66
-462
-139
-522
+64
+422
+137
+482
 alpha
 0.14
 1
@@ -1299,10 +1288,10 @@ alpha
 Number
 
 TEXTBOX
-5
-476
-65
-517
+3
+436
+63
+477
 (mi^2/hr)
 11
 0.0
@@ -1311,7 +1300,7 @@ TEXTBOX
 BUTTON
 1061
 10
-1127
+1141
 43
 Setup
 setup-init-val
@@ -1326,10 +1315,10 @@ NIL
 1
 
 PLOT
-947
-504
-1370
-725
+963
+502
+1386
+723
 Evacuation Time Histogram
 Minutes (after the earthquake)
 #
@@ -1346,21 +1335,21 @@ PENS
 "Median" 1.0 0 -2674135 true "set-plot-pen-mode 0 ; line mode" "plot-pen-reset\nplot-pen-up\nplotxy median ev_times 0\nplot-pen-down\nplotxy median ev_times plot-y-max"
 
 MONITOR
-1043
+962
 101
-1159
+1097
 146
-Per Evacuated (%)
+Evacuated (%)
 count turtles with [ color = green ] / (count residents + count pedestrians + count cars) * 100
 1
 1
 11
 
 INPUTBOX
-166
-213
-216
-273
+164
+173
+214
+233
 Tc
 120.0
 1
