@@ -185,22 +185,22 @@ end
 ;                  in addition, it sets the appropriate milling time based on the decision and its corresponding Rayleigh dist. parameters entered by the user
 to make-decision
   let rnd random-float 100
-  ifelse (rnd < R1_HorEvac_Foot ) [
+  ifelse (rnd < R1_Educated_Foot ) [
     set decision 1
     set miltime ((Rayleigh-random Rsig1) + Rtau1 ) * 60 / tick_to_sec
   ]
   [
-    ifelse (rnd >= R1_HorEvac_Foot and rnd < R1_HorEvac_Foot + R2_HorEvac_Car ) [
+    ifelse (rnd >= R1_Educated_Foot and rnd < R1_Educated_Foot + R2_Educated_Car ) [
       set decision 2
       set miltime ((Rayleigh-random Rsig2) + Rtau2 ) * 60 / tick_to_sec
     ]
     [
-      ifelse (rnd >= R1_HorEvac_Foot + R2_HorEvac_Car and rnd < R1_HorEvac_Foot + R2_HorEvac_Car + R3_VerEvac_Foot ) [
+      ifelse (rnd >= R1_Educated_Foot + R2_Educated_Car and rnd < R1_Educated_Foot + R2_Educated_Car + R3_Uneducated_Foot ) [
         set decision 3
         set miltime ((Rayleigh-random Rsig3) + Rtau3 ) * 60 / tick_to_sec
       ]
       [
-        if (rnd >= R1_HorEvac_Foot + R2_HorEvac_Car + R3_VerEvac_Foot and rnd < R1_HorEvac_Foot + R2_HorEvac_Car + R3_VerEvac_Foot + R4_VerEvac_Car ) [
+        if (rnd >= R1_Educated_Foot + R2_Educated_Car + R3_Uneducated_Foot and rnd < R1_Educated_Foot + R2_Educated_Car + R3_Uneducated_Foot + R4_Uneducated_Car ) [
           set decision 4
           set miltime ((Rayleigh-random Rsig4) + Rtau4 ) * 60 / tick_to_sec
         ]
@@ -348,10 +348,10 @@ end
 ; this function sets some initial value for an initial try to run the model
 ; if the user decides not to tweak any of the inputs
 to setup-init-val
-  set R1_HorEvac_Foot 25          ; 25% of the agents evacuate horizontally on foot
-  set R2_HorEvac_Car 25           ; 25% of the agents evacuate horizontally with their car
-  set R3_VerEvac_Foot 25          ; 25% of the agents evacuate on foot and are open to vertical evaucation if it is closer to them compared to a shelter outside the inundation zone
-  set R4_VerEvac_Car 25           ; 25% of the agents evacuate with their car and are open to vertical evaucation if it is closer to them compared to a shelter outside the inundation zone
+  set R1_Educated_Foot 25          ; 25% of the agents evacuate horizontally on foot
+  set R2_Educated_Car 25           ; 25% of the agents evacuate horizontally with their car
+  set R3_Uneducated_Foot 25          ; 25% of the agents evacuate on foot and are open to vertical evaucation if it is closer to them compared to a shelter outside the inundation zone
+  set R4_Uneducated_Car 25           ; 25% of the agents evacuate with their car and are open to vertical evaucation if it is closer to them compared to a shelter outside the inundation zone
   set Hc 1.0                      ; the critical wave height that marks the threshold of casualties is set to 1.0 meter
   set Tc 120                      ; the time it takes for the inundation above Hc to kill an agent (seconds)
   set Ped_Speed 4                 ; the mean of the normal dist. that the walking speed of the agents are drawn from is set to 4 ft/s
@@ -683,7 +683,7 @@ end
 ; before breaking roads and adding vertical shelters
 to load1
   ca
-  print (word "Foot %: " R1_HorEvac_Foot " - Speed ft/s: " Ped_Speed " - Miltime min: " Rtau1)
+  print (word "Foot %: " R1_Educated_Foot " - Speed ft/s: " Ped_Speed " - Miltime min: " Rtau1)
   ask patches [set pcolor white]
   set ev_times []
   read-gis-files
@@ -891,9 +891,9 @@ to go
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-228
+256
 11
-940
+968
 724
 -1
 -1
@@ -918,9 +918,9 @@ ticks
 30.0
 
 PLOT
-962
+990
 340
-1386
+1414
 493
 Percentage of Evacuated
 Min
@@ -938,9 +938,9 @@ PENS
 "Pedestrians" 1.0 0 -14835848 true "" "plotxy (ticks / 60) (count pedestrians with [ color = green ] / (count residents + count pedestrians + count cars) * 100)"
 
 BUTTON
-1148
+1176
 10
-1227
+1255
 43
 GO
 go
@@ -967,9 +967,9 @@ Residents' Decision Making Probabalisties : (Percent)
 INPUTBOX
 6
 47
+121
 107
-107
-R1_HorEvac_Foot
+R1_Educated_Foot
 25.0
 1
 0
@@ -978,18 +978,18 @@ Number
 INPUTBOX
 6
 110
-107
+121
 170
-R3_VerEvac_Foot
+R3_Uneducated_Foot
 25.0
 1
 0
 Number
 
 MONITOR
-963
+991
 48
-1055
+1083
 93
 Time (min)
 ticks / 60
@@ -998,10 +998,10 @@ ticks / 60
 11
 
 INPUTBOX
-111
-174
-161
-234
+134
+175
+184
+235
 Hc
 1.0
 1
@@ -1009,9 +1009,9 @@ Hc
 Number
 
 PLOT
-961
+989
 156
-1386
+1414
 330
 Percentage of Casualties
 Min
@@ -1029,31 +1029,31 @@ PENS
 "Pedestrians" 1.0 0 -955883 true "" "plotxy (ticks / 60) ((count pedestrians with [color = red] + count residents with [color = red]) / (count residents + count pedestrians + count cars) * 100)"
 
 TEXTBOX
-3
-175
-119
-217
+9
+176
+125
+218
 Critical Depth and Time: (Meters and Seconds)
 11
 0.0
 1
 
 INPUTBOX
-6
-499
-56
-559
+8
+501
+58
+561
 Rtau1
-10.0
+1.0
 1
 0
 Number
 
 INPUTBOX
-56
-499
-106
-559
+58
+501
+108
+561
 Rsig1
 1.65
 1
@@ -1061,21 +1061,21 @@ Rsig1
 Number
 
 INPUTBOX
-6
-563
-56
-623
+8
+565
+58
+625
 Rtau3
-40.0
+1.0
 1
 0
 Number
 
 INPUTBOX
-56
-563
-106
-623
+58
+565
+108
+625
 Rsig3
 1.65
 1
@@ -1084,29 +1084,29 @@ Number
 
 TEXTBOX
 8
-483
+484
 208
-511
+512
 Evacuation Decsion Making Times:
 11
 0.0
 1
 
 TEXTBOX
-16
-234
-65
-262
+22
+235
+71
+263
 On foot: (ft/s)
 11
 0.0
 1
 
 INPUTBOX
-64
-236
-134
-296
+87
+237
+157
+297
 Ped_Speed
 4.0
 1
@@ -1114,10 +1114,10 @@ Ped_Speed
 Number
 
 INPUTBOX
-142
+165
+237
 236
-213
-296
+297
 Ped_Sigma
 0.65
 1
@@ -1125,9 +1125,9 @@ Ped_Sigma
 Number
 
 MONITOR
-1063
+1091
 47
-1141
+1169
 92
 Evacuated
 count turtles with [ color = green ]
@@ -1136,9 +1136,9 @@ count turtles with [ color = green ]
 11
 
 MONITOR
-1150
+1178
 47
-1227
+1255
 92
 Casualties
 count turtles with [ color = red ]
@@ -1147,9 +1147,9 @@ count turtles with [ color = red ]
 11
 
 MONITOR
-1107
+1135
 101
-1226
+1254
 146
 Mortality (%)
 mortality_rate
@@ -1158,43 +1158,43 @@ mortality_rate
 11
 
 INPUTBOX
-115
+129
 47
-215
+241
 107
-R2_HorEvac_Car
+R2_Educated_Car
 25.0
 1
 0
 Number
 
 INPUTBOX
-115
+129
 110
-215
+240
 170
-R4_VerEvac_Car
+R4_Uneducated_Car
 25.0
 1
 0
 Number
 
 INPUTBOX
-112
-499
-162
-559
+133
+502
+183
+562
 Rtau2
-15.0
+1.0
 1
 0
 Number
 
 INPUTBOX
-162
-499
-212
-559
+183
+502
+233
+562
 Rsig2
 1.65
 1
@@ -1202,21 +1202,21 @@ Rsig2
 Number
 
 INPUTBOX
-114
-564
-164
-624
+135
+567
+185
+627
 Rtau4
-45.0
+1.0
 1
 0
 Number
 
 INPUTBOX
-161
-564
-211
-624
+182
+567
+232
+627
 Rsig4
 1.65
 1
@@ -1224,10 +1224,10 @@ Rsig4
 Number
 
 INPUTBOX
-64
-300
-135
-360
+87
+301
+158
+361
 max_speed
 35.0
 1
@@ -1235,20 +1235,20 @@ max_speed
 Number
 
 TEXTBOX
-11
-300
-51
-328
+17
+301
+57
+329
 by car:\n(mph)
 11
 0.0
 1
 
 INPUTBOX
-64
-361
-137
-421
+87
+362
+160
+422
 acceleration
 5.0
 1
@@ -1256,10 +1256,10 @@ acceleration
 Number
 
 INPUTBOX
-141
-361
-216
-421
+164
+362
+239
+422
 deceleration
 25.0
 1
@@ -1267,20 +1267,20 @@ deceleration
 Number
 
 TEXTBOX
-6
-373
-55
-407
+12
+374
+61
+408
 (ft/s^2)
 11
 0.0
 1
 
 INPUTBOX
-64
-422
-137
-482
+87
+423
+160
+483
 alpha
 0.14
 1
@@ -1288,19 +1288,19 @@ alpha
 Number
 
 TEXTBOX
-3
-436
-63
-477
+9
+437
+69
+478
 (mi^2/hr)
 11
 0.0
 1
 
 BUTTON
-1061
+1089
 10
-1141
+1169
 43
 Setup
 setup-init-val
@@ -1315,9 +1315,9 @@ NIL
 1
 
 PLOT
-963
+991
 502
-1386
+1414
 723
 Evacuation Time Histogram
 Minutes (after the earthquake)
@@ -1335,9 +1335,9 @@ PENS
 "Median" 1.0 0 -2674135 true "set-plot-pen-mode 0 ; line mode" "plot-pen-reset\nplot-pen-up\nplotxy median ev_times 0\nplot-pen-down\nplotxy median ev_times plot-y-max"
 
 MONITOR
-962
+990
 101
-1097
+1125
 146
 Evacuated (%)
 count turtles with [ color = green ] / (count residents + count pedestrians + count cars) * 100
@@ -1346,10 +1346,10 @@ count turtles with [ color = green ] / (count residents + count pedestrians + co
 11
 
 INPUTBOX
-164
-173
-214
-233
+187
+174
+237
+234
 Tc
 120.0
 1
@@ -1357,9 +1357,9 @@ Tc
 Number
 
 BUTTON
-961
+989
 10
-1054
+1082
 43
 Load Data
 load1\nload2\noutput-print \"Data loaded\"\nbeep
