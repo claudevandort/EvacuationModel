@@ -938,9 +938,9 @@ PENS
 "Pedestrians" 1.0 0 -14835848 true "" "plotxy (ticks / 60) (count pedestrians with [ color = green ] / (count residents + count pedestrians + count cars) * 100)"
 
 BUTTON
-1294
+1133
 10
-1373
+1212
 43
 GO
 go
@@ -1027,23 +1027,6 @@ PENS
 "Dead" 1.0 0 -2674135 true "" "plotxy (ticks / 60) (count turtles with [color = red] / (count residents + count pedestrians + count cars) * 100)"
 "Cars" 1.0 0 -5825686 true "" "plotxy (ticks / 60) (count cars with [color = red] / (count residents + count pedestrians + count cars) * 100)"
 "Pedestrians" 1.0 0 -955883 true "" "plotxy (ticks / 60) ((count pedestrians with [color = red] + count residents with [color = red]) / (count residents + count pedestrians + count cars) * 100)"
-
-BUTTON
-946
-12
-1022
-45
-READ (1/2)
-load1\noutput-print \"READ (1/2) DONE!\"\nbeep
-NIL
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
 
 TEXTBOX
 5
@@ -1173,40 +1156,6 @@ mortality_rate
 2
 1
 11
-
-BUTTON
-1223
-10
-1289
-43
-Read (2/2)
-load2\noutput-print \"READ (2/2) DONE!\"\nbeep
-NIL
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
-
-BUTTON
-1122
-10
-1218
-43
-Place Verticals
-pick-verticals
-T
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
 
 MONITOR
 1268
@@ -1360,28 +1309,11 @@ TEXTBOX
 1
 
 BUTTON
-1028
-11
-1116
-44
-Break Links
-break-links
-T
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
-
-BUTTON
-7
-14
-62
-47
-Initialize
+1061
+10
+1127
+43
+Setup
 setup-init-val
 NIL
 1
@@ -1434,6 +1366,23 @@ Tc
 1
 0
 Number
+
+BUTTON
+961
+10
+1054
+43
+Load Data
+load1\nload2\noutput-print \"Data loaded\"\nbeep
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 @#$#@#$#@
